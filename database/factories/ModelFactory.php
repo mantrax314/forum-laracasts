@@ -22,3 +22,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/***
+ *
+ * Sample to use in tinker:
+ * factory('App\Thread', 50)->create();
+ *
+ */
+
+$factory->define(App\Thread::class, function ($faker) {
+    return [
+        'user_id' => function () {
+            return factory('App\User')->create()->id;
+        },
+        'title' => $faker->sentence,
+        'body' => $faker->paragraph
+    ];
+});
