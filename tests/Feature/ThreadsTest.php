@@ -7,16 +7,14 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class ThreadsTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
+    use DatabaseMigrations;
+
+    /** @test */
+    public function a_user_can_browse_threads()
     {
-        $response = $this->get('/');
+        $response = $this->get('/threads');
 
         $response->assertStatus(200);
     }
