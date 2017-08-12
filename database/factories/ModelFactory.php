@@ -39,3 +39,27 @@ $factory->define(App\Thread::class, function ($faker) {
         'body' => $faker->paragraph
     ];
 });
+
+/***
+ *
+ * Sample to use in tinker:
+ * $threads = factory('App\Thread', 50)->create();
+ *
+ * $threads->each(
+ *  function($thread) {
+ *      factory('App\Reply', 10)->create(['thread_id'=>$thread->id]);
+ *  }
+ * );
+ */
+
+$factory->define(App\Reply::class, function ($faker) {
+    return [
+        'thread_id' => function () {
+            return factory('App\Thread')->create()->id;
+        },
+        'user_id' => function () {
+            return factory('App\User')->create()->id;
+        },
+        'body' => $faker->paragraph
+    ];
+});
