@@ -10,7 +10,7 @@ class ThreadTest extends TestCase
 {
     use DatabaseMigrations;
 
-    //Sample to run     phpunit tests/Unit/ThreadTest.php
+    //Sample to run whole test file    phpunit tests/Unit/ThreadTest.php
 
     /** @test */
     public function a_thread_has_replies()
@@ -18,5 +18,15 @@ class ThreadTest extends TestCase
         $thread = factory('App\Thread')->create();
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $thread->replies);
+    }
+
+    //Sample to run whole this test only phpunit --filter a_thread_has_a_creator
+
+    /** @test */
+    public function a_thread_has_a_creator()
+    {
+        $thread = factory('App\Thread')->create();
+
+        $this->assertInstanceOf('App\User', $thread->creator);
     }
 }
