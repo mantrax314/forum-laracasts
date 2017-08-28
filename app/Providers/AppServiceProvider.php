@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //Fix for Specified key was too long error in mariadb implementation
+        Schema::defaultStringLength(191);
     }
 
     /**
